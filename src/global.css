@@ -1,0 +1,23 @@
+.ant-btn-primary {
+    color: #fff !important;
+    background-color: #3d74aa !important;
+    border-color: #3d74aa !important;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, .12);
+    -webkit-box-shadow: 0 2px 0 rgba(0, 0, 0, .045);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, .045);
+}
+
+.ant-table-tbody>tr.ant-table-row-hover:not(.ant-table-expanded-row):not(.ant-table-row-selected)>td,
+.ant-table-tbody>tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected)>td,
+.ant-table-thead>tr.ant-table-row-hover:not(.ant-table-expanded-row):not(.ant-table-row-selected)>td,
+.ant-table-thead>tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected)>td {
+    background: rgb(221, 230, 235);
+}
+
+
+h1 {
+    padding-bottom: 1px;
+    border-bottom: 1px solid #eaecef;
+    font-size: 2em;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}

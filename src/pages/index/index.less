@@ -1,0 +1,87 @@
+.body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.root {
+    margin-top: 10px;
+    width: 98%;
+    max-width: 680px;
+}
+
+.title {
+    font-size: 2em;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.MuiIconButton-root {
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    font-weight: 400;
+    line-height: 1.43;
+    letter-spacing: 0.01071em;
+    box-sizing: inherit;
+    border: 0;
+    cursor: pointer;
+    margin: 0;
+    display: inline-flex;
+    outline: 0;
+    position: relative;
+    align-items: center;
+    user-select: none;
+    vertical-align: middle;
+    justify-content: center;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-tap-highlight-color: transparent;
+    flex: 0 0 auto;
+    color: rgba(0, 0, 0, 0.54);
+    padding: 12px;
+    overflow: visible;
+    font-size: 1.5rem;
+    text-align: center;
+    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    border-radius: 50%;
+}
+
+.MuiIconButton-label {
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    font-weight: 400;
+    line-height: 1.43;
+    letter-spacing: 0.01071em;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 1.5rem;
+    text-align: center;
+    box-sizing: inherit;
+    width: 100%;
+    display: flex;
+    align-items: inherit;
+    justify-content: inherit;
+}
+
+.go {
+    text-decoration: none;
+    color: #121314;
+    position: relative;
+}
+
+.go:after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 60%;
+    left: -0.1em;
+    right: -0.1em;
+    bottom: 0;
+    transition: top 200ms cubic-bezier(0, 0.8, 0.13, 1);
+    background-color: #91d5ff;
+}
+
+.go:hover:after {
+    top: 0%;
+}
