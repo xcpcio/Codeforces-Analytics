@@ -2,8 +2,8 @@ name: Build and Release
 on:
   workflow_dispatch:
   push:
-    tags: # 当我们提交代码为tag 是以'v'开头的时候才会触发自动部署到服务端 如 git push tag v0.1.0
-      - 'v*'
+    branch:
+      - main
 
 jobs:
   build-and-deploy:
@@ -38,11 +38,11 @@ jobs:
 
       - name: Create Release # 创建Release，可以在仓库看到一个个版本
         id: create_release
-        uses: actions/create-release@master
+        uses: actions/create-release@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # 之前GitHub添加的Token
         with:
-          commitish: 'gh-pages'
+          commitish: gh-pages
           tag_name: ${{ github.ref }} # (tag)标签名称
           release_name: Release ${{ github.ref }}
           draft: false # 是否是草稿
