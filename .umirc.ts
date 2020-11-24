@@ -1,7 +1,6 @@
 import { defineConfig } from 'umi';
 
 export default defineConfig({
-    exportStatic: {},
     hash: true,
     nodeModulesTransform: {
         type: 'none',
