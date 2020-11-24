@@ -232,7 +232,7 @@ class UserTable extends React.Component {
                         <Tooltip title="查看详细资料">
                             <Button
                                 size="small"
-                                href={['/', 'profile', handle].join('/')}
+                                href={['', 'profile', handle].join('/')}
                                 icon={<CheckIcon />}
                             ></Button>
                         </Tooltip>
