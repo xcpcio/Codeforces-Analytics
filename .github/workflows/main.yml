@@ -47,3 +47,4 @@ jobs:
           draft: false # 是否是草稿
           prerelease: false # 是否是预发布
           commitish: gh-pages
+          
