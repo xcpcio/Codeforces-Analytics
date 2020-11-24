@@ -14,13 +14,16 @@ import {
 import { HandleLink, RatingSpan } from '@/components/Rating';
 import { Rating, Handle, User } from '@/pages/team';
 import { CheckIcon } from '@/icons';
-import moment from 'moment';
-moment.locale('zh-cn');
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import 'dayjs/locale/zh-cn';
+dayjs.locale('zh-cn');
+dayjs.extend(relativeTime);
 
 function timeRender(timeStamp: number) {
     return (
-        <Tooltip title={moment.unix(timeStamp).format('YYYY-MM-DD h:mm:ss')}>
-            <span>{moment.unix(timeStamp).fromNow()}</span>
+        <Tooltip title={dayjs.unix(timeStamp).format('YYYY-MM-DD h:mm:ss')}>
+            <span>{dayjs.unix(timeStamp).fromNow()}</span>
         </Tooltip>
     );
 }
