@@ -9,6 +9,18 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Get Version ID
+        id: get-version-id
+        run: |
+          VERSION_ID=$(cat package.json | grep version | sed 's|  \"\version": \"||g' | sed 's|\",||g')
+          echo "::set-output name=version-id::$(echo $VERSION_ID)"
+      
+      - name: Out Version ID
+        env:
+          VERSION_ID: "${{ steps.get-version-id.outputs.version-id }}"
+        run: |
+          echo "$VERSION_ID"
+
       - name: Checkout
         uses: actions/checkout@v2.3.1 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
         with:
@@ -21,13 +33,15 @@ jobs:
           registry-url: https://registry.npmjs.org/
 
       - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
+        env:
+          VERSION: v0.0.1
         run: |
           npm install
           npm run build
           mkdir site
           cp dist/index.html site/404.html
           mv dist/* site/
-          
+
       - name: Release
         uses: JamesIves/github-pages-deploy-action@3.6.2
         with:
@@ -36,14 +50,15 @@ jobs:
           FOLDER: site # The folder the action should deploy.
           CLEAN: true # Automatically remove deleted files from the deploy brancht
 
-      - name: Create Release # 创建Release，可以在仓库看到一个个版本
-        id: create_release
-        uses: actions/create-release@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # 之前GitHub添加的Token
-        with:
-          commitish: gh-pages
-          tag_name: ${{ github.ref }} # (tag)标签名称
-          release_name: Release ${{ github.ref }}
-          draft: false # 是否是草稿
-          prerelease: false # 是否是预发布
+      # - name: Create Release # 创建Release，可以在仓库看到一个个版本
+      #   id: create_release
+      #   uses: actions/create-release@main
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+      #   with:
+      #     commitish: gh-pages
+      #     tag_name: ${{ github.ref }} # (tag)标签名称
+      #     release_name: Release ${{ github.ref }}
+      #     draft: false # 是否是草稿
+      #     prerelease: false # 是否是预发布
+          
