@@ -32,6 +32,7 @@ jobs:
           VERSION_ID: ${{ steps.get-version-id.outputs.version-id }}
         run: |
           sed -i "s|publicPath: \'\/\'|publicPath: \'\/\/cdn\.jsdelivr\.net\/gh\/XCPCIO\/Codeforces-Analyze@${{ env.VERSION_ID }}\/\'|" .umirc.ts
+          cat .umirc.ts
           npm install
           npm run build
           mkdir site
