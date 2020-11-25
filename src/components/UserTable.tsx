@@ -16,6 +16,7 @@ import { Rating, Handle, User } from '@/pages/team';
 import { CheckIcon } from '@/icons';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { DeepCopy } from '@/utils';
 import 'dayjs/locale/zh-cn';
 dayjs.locale('zh-cn');
 dayjs.extend(relativeTime);
@@ -35,7 +36,7 @@ function ratingRender(item: Rating) {
 class UserTable extends React.Component {
     update(props: any) {
         this.setState({
-            tableData: props.tableData,
+            tableData: DeepCopy(props.tableData),
         });
     }
 

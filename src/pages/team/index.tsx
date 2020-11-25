@@ -55,11 +55,15 @@ async function fetch(handles: string[], _this: Index) {
             organization: user.organization || '',
         } as User);
         rating.push(user.rating || 0);
+        _this.setState({
+            tableData: tableData,
+            teamRating: getTeamRating(rating),
+        });
     }
-    _this.setState({
-        tableData: tableData,
-        teamRating: getTeamRating(rating),
-    });
+    // _this.setState({
+    //     tableData: tableData,
+    //     teamRating: getTeamRating(rating),
+    // });
 }
 
 class Index extends React.Component {

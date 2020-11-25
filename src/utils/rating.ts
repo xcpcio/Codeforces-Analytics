@@ -18,5 +18,5 @@ export function getTeamRating(teamRatings: number[]): number {
             right = r;
         }
     }
-    return Math.floor((left + right) / 2.0);
+    return Math.ceil((left + right) / 2.0);
 }
