@@ -60,10 +60,6 @@ async function fetch(handles: string[], _this: Index) {
             teamRating: getTeamRating(rating),
         });
     }
-    // _this.setState({
-    //     tableData: tableData,
-    //     teamRating: getTeamRating(rating),
-    // });
 }
 
 class Index extends React.Component {
