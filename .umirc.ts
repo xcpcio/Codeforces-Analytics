@@ -11,4 +11,5 @@ export default defineConfig({
         { path: '/team/:handle_list', component: '@/pages/team', exact: true },
         { path: '/profile/:handle', component: '@/pages/profile', exact: true },
     ],
+    publicPath: '/',
 });
