@@ -53,8 +53,8 @@ jobs:
           VERSION_ID: ${{ steps.get-version-id.outputs.version-id }}
         with:
           commitish: gh-pages
-          tag_name: ${{ VERSION_ID }}
-          release_name: Release ${{ VERSION_ID }}
+          tag_name: $VERSION_ID
+          release_name: Release $VERSION_ID
           draft: false # 是否是草稿
           prerelease: false # 是否是预发布
           
