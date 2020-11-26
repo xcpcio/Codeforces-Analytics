@@ -399,4 +399,4 @@ class BasicInfo extends React.Component {
     }
 }
 
-export default BasicInfo;
+export { BasicInfo };

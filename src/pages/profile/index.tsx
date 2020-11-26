@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './index.less';
-import BasicInfo from './components/BasicInfo';
+import { BasicInfo, Problem, SubmitCount } from './components';
 
 class Profile extends React.Component {
     update(props: any) {
@@ -34,6 +34,8 @@ class Profile extends React.Component {
                 <div className={style.body}>
                     <div className={style.root}>
                         <BasicInfo handle={this.state.handle} />
+                        {/* <Problem handle={this.state.handle} /> */}
+                        <SubmitCount handle={this.state.handle} />
                     </div>
                 </div>
             </>
