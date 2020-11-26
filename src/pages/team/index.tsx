@@ -1,8 +1,8 @@
 import React from 'react';
 import { Layout, Menu, Spin, Input, Radio, message, Button } from 'antd';
-import Table from '@/components/UserTable';
+import { UserTable } from '@/components';
 import style from './index.less';
-import { cf, UserCf } from '@/model';
+import { cf, UserInfo } from '@/model';
 import { getTeamRating } from '@/utils';
 
 export interface Rating {
@@ -26,12 +26,12 @@ export interface User {
     organization: string;
 }
 
-async function fetch(handles: string[], _this: Index) {
+async function fetch(handles: string[], _this: Team) {
     let tableData: User[] = [];
     let rating: number[] = [];
     for (let i = 0; i < handles.length; ++i) {
         const handle = handles[i];
-        let user: UserCf = (await cf.getOne(handle)) as UserCf;
+        let user: UserInfo = (await cf.getUserInfo(handle)) as UserInfo;
         if (user == null) continue;
         tableData.push({
             key: i,
@@ -62,7 +62,7 @@ async function fetch(handles: string[], _this: Index) {
     }
 }
 
-class Index extends React.Component {
+class Team extends React.Component {
     async update(props: any) {
         let handles: string[] = props.match.params.handle_list.split(';');
         fetch(handles, this);
@@ -100,7 +100,7 @@ class Index extends React.Component {
                             <div style={{ float: 'right' }}></div>
                         </div>
 
-                        <Table tableData={this.state.tableData}></Table>
+                        <UserTable tableData={this.state.tableData}></UserTable>
                     </div>
                 </div>
             </>
@@ -108,4 +108,4 @@ class Index extends React.Component {
     }
 }
 
-export default Index;
+export default Team;

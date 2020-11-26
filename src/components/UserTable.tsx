@@ -14,23 +14,15 @@ import {
 import { HandleLink, RatingSpan } from '@/components/Rating';
 import { Rating, Handle, User } from '@/pages/team';
 import { CheckIcon } from '@/icons';
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
 import { DeepCopy } from '@/utils';
-import 'dayjs/locale/zh-cn';
-dayjs.locale('zh-cn');
-dayjs.extend(relativeTime);
-
-function timeRender(timeStamp: number) {
-    return (
-        <Tooltip title={dayjs.unix(timeStamp).format('YYYY-MM-DD h:mm:ss')}>
-            <span>{dayjs.unix(timeStamp).fromNow()}</span>
-        </Tooltip>
-    );
-}
+import { TimeRender } from '@/components';
 
 function ratingRender(item: Rating) {
     return <RatingSpan rating={item.rating} rank={item.rank} />;
+}
+
+function timeRender(timeStamp: number) {
+    return <TimeRender timeStamp={timeStamp} />;
 }
 
 class UserTable extends React.Component {
@@ -261,4 +253,4 @@ class UserTable extends React.Component {
     }
 }
 
-export default UserTable;
+export { UserTable };

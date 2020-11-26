@@ -1,5 +1,5 @@
 import { host } from '@/model';
-import React, { useEffect } from 'react';
+import React from 'react';
 import style from './index.less';
 
 function getRankClassName(rank: string): string {
