@@ -1,7 +1,7 @@
 import React from 'react';
 import { Skeleton, Row, Col, Statistic } from 'antd';
 import style from './BasicInfo.less';
-import { UserInfo, cf, UserStatus } from '@/model';
+import { UserInfo, cf, UserStatus, host } from '@/model';
 import {
     HandleLink,
     RatingSpan,
@@ -151,6 +151,45 @@ class AcAndSubmitCount extends React.Component {
     }
 }
 
+const NameAndCountryCity = ({ firstName, lastName, country, city }) => {
+    const hasName = firstName != null || lastName != null;
+    const hasCountry = country != null;
+    const hasCity = city != null;
+    const getCountryUrl = (country: string) => {
+        return `${host}/ratings/country/${country}`;
+    };
+    const getCityUrl = (city: string, country: string) => {
+        return `${getCountryUrl(country)}/city/${city}`;
+    };
+    return (
+        <>
+            {hasName && (
+                <>
+                    <span
+                        style={{
+                            fontSize: '1.2em',
+                        }}
+                    >
+                        {`${firstName} ${lastName}`}
+                    </span>
+                </>
+            )}
+            {hasName && (hasCountry || hasCity) && <>,&nbsp;</>}
+            {hasCity && (
+                <span style={{ fontSize: '1.2em' }}>
+                    <a href={getCityUrl(city, country)}>{city}</a>
+                </span>
+            )}
+            {hasCity && hasCountry && <>&nbsp;</>}
+            {hasCountry && (
+                <span style={{ fontSize: '1.2em' }}>
+                    <a href={getCountryUrl(country)}>{country}</a>
+                </span>
+            )}
+        </>
+    );
+};
+
 class BasicInfo extends React.Component {
     async fetch(handle: string) {
         const userInfo: UserInfo = (await cf.getUserInfo(handle)) as UserInfo;
@@ -215,40 +254,27 @@ class BasicInfo extends React.Component {
                                                 }
                                             />
                                         </span>
-                                        {(this.state.userInfo?.firstName ||
-                                            this.state.userInfo?.lastName) && (
-                                            <>
-                                                &nbsp;
-                                                <span
-                                                    style={{
-                                                        fontSize: '1.2em',
-                                                    }}
-                                                >
-                                                    {`${this.state.userInfo
-                                                        ?.firstName ||
-                                                        ''} ${this.state
-                                                        .userInfo?.lastName ||
-                                                        ''}`}
-                                                </span>
-                                            </>
-                                        )}
                                     </div>
                                     <div>
-                                        {(this.state.userInfo?.city ||
-                                            this.state.userInfo?.country) && (
-                                            <span style={{ fontSize: '1.2em' }}>
-                                                {` ${this.state.userInfo
-                                                    ?.city || ''} ${this.state
-                                                    .userInfo?.country || ''}`}
-                                            </span>
-                                        )}
+                                        <NameAndCountryCity
+                                            firstName={
+                                                this.state.userInfo?.firstName
+                                            }
+                                            lastName={
+                                                this.state.userInfo?.lastName
+                                            }
+                                            country={
+                                                this.state.userInfo?.country
+                                            }
+                                            city={this.state.userInfo?.city}
+                                        />
                                     </div>
                                     <div>
                                         {this.state.userInfo?.organization && (
                                             <span style={{ fontSize: '1.2em' }}>
                                                 {this.state.userInfo
                                                     ?.organization &&
-                                                    `from ${this.state.userInfo
+                                                    `From ${this.state.userInfo
                                                         ?.organization || ''}`}
                                             </span>
                                         )}
