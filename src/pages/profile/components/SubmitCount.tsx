@@ -54,13 +54,14 @@ class SubmitCount extends React.Component {
 
     async fetch(handle: string) {
         this.clearTimer();
+        if (this.state.loaded === true) return;
         const userStatus: UserStatus[] = (await cf.getUserStatus(
             handle,
         )) as UserStatus[];
         if (userStatus == null) {
             this.timer = setTimeout(() => {
                 this.fetch(handle);
-            }, 500);
+            }, 1000);
         } else {
             let dateMap = new Map();
             for (let i = 0; i <= 365; ++i) {
@@ -105,8 +106,10 @@ class SubmitCount extends React.Component {
     }
 
     update(props: any) {
-        const handle = props.handle;
-        this.fetch(handle);
+        const handle = props.handle || '';
+        if (handle.trim() !== '') {
+            this.fetch(handle);
+        }
     }
 
     //在组件已经被渲染到 DOM 中后运行
