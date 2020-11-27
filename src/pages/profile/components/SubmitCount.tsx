@@ -46,13 +46,20 @@ function timeFormat(timeStamp: number) {
 }
 
 class SubmitCount extends React.Component {
+    timer: any = null;
+
+    clearTimer() {
+        this.timer && clearTimeout(this.timer);
+    }
+
     async fetch(handle: string) {
+        this.clearTimer();
         const userStatus: UserStatus[] = (await cf.getUserStatus(
             handle,
         )) as UserStatus[];
         if (userStatus == null) {
-            setTimeout(() => {
-                fetch(handle);
+            this.timer = setTimeout(() => {
+                this.fetch(handle);
             }, 500);
         } else {
             let dateMap = new Map();
@@ -83,7 +90,7 @@ class SubmitCount extends React.Component {
                     const rate = (count * 1.0) / Max;
                     return Math.ceil(rate / 0.25);
                 };
-                console.log(getColor(count));
+                // console.log(getColor(count));
                 SubmitCountArr.push({
                     date: date,
                     count: count,

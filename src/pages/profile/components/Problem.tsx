@@ -10,7 +10,7 @@ class Problem extends React.Component {
         )) as UserStatus[];
         if (userStatus == null) {
             setTimeout(() => {
-                fetch(handle);
+                this.fetch(handle);
             }, 500);
         } else {
             let AcSet = new Set();

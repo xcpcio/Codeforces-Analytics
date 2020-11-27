@@ -14,13 +14,20 @@ class AcAndSubmitCount extends React.Component {
     weekTimeSeconds = 60 * 60 * 24 * 7;
     monthTimeSeconds = 60 * 60 * 24 * 30;
 
+    timer: any = null;
+
+    clearTimer() {
+        this.timer && clearTimeout(this.timer);
+    }
+
     async fetch(handle: string) {
+        this.clearTimer();
         const userStatus: UserStatus[] = (await cf.getUserStatus(
             handle,
         )) as UserStatus[];
         if (userStatus === null) {
-            setTimeout(() => {
-                fetch(handle);
+            this.timer = setTimeout(() => {
+                this.fetch(handle);
             }, 500);
         } else {
             const nowTimeStamp = getNowTimeStamp();
@@ -191,11 +198,18 @@ const NameAndCountryCity = ({ firstName, lastName, country, city }) => {
 };
 
 class BasicInfo extends React.Component {
+    timer: any = null;
+
+    clearTimer() {
+        this.timer && clearTimeout(this.timer);
+    }
+
     async fetch(handle: string) {
+        this.clearTimer();
         const userInfo: UserInfo = (await cf.getUserInfo(handle)) as UserInfo;
         if (userInfo === null) {
-            setTimeout(() => {
-                fetch(handle);
+            this.timer = setTimeout(() => {
+                this.fetch(handle);
             }, 500);
         } else {
             this.setState({
