@@ -1,4 +1,4 @@
-# Codeforces Analyze 
+# Codeforces Analytics
 
 
 ## Rating
