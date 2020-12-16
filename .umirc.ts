@@ -1,7 +1,7 @@
 import { defineConfig } from 'umi';
 
 export default defineConfig({
-    title: 'Codeforces Analyze',
+    title: 'Codeforces Analytics',
     hash: true,
     nodeModulesTransform: {
         type: 'none',
