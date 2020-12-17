@@ -43,7 +43,7 @@ class Index extends React.Component {
                                     ].join(' ')}
                                     target="_blank"
                                     rel="noreferrer"
-                                    href="https://github.com/XCPCIO/Codeforces-Analyze"
+                                    href="https://github.com/XCPCIO/Codeforces-Analytics"
                                     title="Github"
                                 >
                                     <span
