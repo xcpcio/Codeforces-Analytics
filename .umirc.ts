@@ -3,6 +3,7 @@ import { defineConfig } from 'umi';
 export default defineConfig({
     title: 'Codeforces Analytics',
     hash: true,
+    favicon: 'favicon-16x16.png',
     nodeModulesTransform: {
         type: 'none',
     },
