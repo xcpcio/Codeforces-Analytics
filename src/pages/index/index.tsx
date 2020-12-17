@@ -30,7 +30,7 @@ class Index extends React.Component {
                         <div style={{ display: 'flex' }}>
                             <div style={{ float: 'left' }}>
                                 <span className={style.title}>
-                                    Codeforces Analyze
+                                    Codeforces Analytics
                                 </span>
                             </div>
                             <div style={{ flex: '1' }}></div>
