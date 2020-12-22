@@ -1,9 +1,11 @@
 import { defineConfig } from 'umi';
+import CONFIG from './config';
 
 export default defineConfig({
-    title: 'Codeforces Analytics',
+    title: CONFIG.title,
     hash: true,
-    favicon: 'favicon-16x16.png',
+    favicon: CONFIG.favicon,
+    analytics: CONFIG.analytics,
     nodeModulesTransform: {
         type: 'none',
     },
@@ -12,5 +14,5 @@ export default defineConfig({
         { path: '/team/:handle_list', component: '@/pages/team', exact: true },
         { path: '/profile/:handle', component: '@/pages/profile', exact: true },
     ],
-    publicPath: '/',
+    publicPath: CONFIG.publicPath,
 });

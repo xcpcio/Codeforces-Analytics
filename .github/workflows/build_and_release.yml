@@ -31,8 +31,9 @@ jobs:
         env:
           VERSION_ID: ${{ steps.get-version-id.outputs.version-id }}
         run: |
-          sed -i "s|publicPath: '/'|publicPath: '//cdn.jsdelivr.net/gh/XCPCIO/Codeforces-Analytics@${{ env.VERSION_ID }}/'|" .umirc.ts
-          sed -i "s|favicon: 'favicon-16x16.png'|favicon: '//cdn.jsdelivr.net/gh/XCPCIO/Codeforces-Analytics@${{ env.VERSION_ID }}/favicon-16x16.png'|" .umirc.ts
+          sed -i "s|publicPath: '/'|publicPath: '//cdn.jsdelivr.net/gh/XCPCIO/Codeforces-Analytics@${{ env.VERSION_ID }}/'|" config.ts
+          sed -i "s|favicon: 'favicon-16x16.png'|favicon: '//cdn.jsdelivr.net/gh/XCPCIO/Codeforces-Analytics@${{ env.VERSION_ID }}/favicon-16x16.png'|" config.ts
+          sed -i "s|baidu: ''|baidu: '${{ secrets.BAIDU_ANALYTICS_ID }}'|" config.ts 
           cat .umirc.ts
           npm install
           npm run build
