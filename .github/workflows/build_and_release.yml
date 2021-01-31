@@ -38,9 +38,17 @@ jobs:
           npm install
           npm run build
           mkdir site
-          cp dist/index.html site/404.html
           mv dist/* site/
 
+      - name: Minify HTML Index
+        uses: Dup4/minify-html-action@v7
+        with:
+          src: './site/index.html'
+
+      - name: Enable 404.html
+        run: |
+          cp ./site/index.html ./site/404.html
+          
       - name: Release
         uses: JamesIves/github-pages-deploy-action@3.6.2
         with:
